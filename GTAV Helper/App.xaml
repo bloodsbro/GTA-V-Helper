@@ -1,0 +1,236 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:local="clr-namespace:GTAV_Helper"
+ x:Class="GTAV_Helper.App"
+StartupUri="MainWindow.xaml">
+	
+	<Application.Resources>
+
+		<Style x:Key="{x:Type Label}" TargetType="{x:Type Label}">
+			<Setter Setter.Property="Control.Foreground" Setter.Value="#FFFFFFFF" />
+			<Setter Setter.Property="FrameworkElement.HorizontalAlignment" Setter.Value="Center" />
+		</Style>
+		<Style x:Key="btnTitle" TargetType="{x:Type Button}">
+			<Setter Setter.Property="UIElement.Opacity" Setter.Value=".8" />
+			<Setter Setter.Property="Control.Background" Setter.Value="#00FFFFFF" />
+			<Setter Setter.Property="Control.Foreground" Setter.Value="#FFFFFFFF" />
+			<Setter Setter.Property="Control.VerticalContentAlignment" Setter.Value="Center" />
+			<Setter Setter.Property="Control.HorizontalContentAlignment" Setter.Value="Center" />
+			<Setter Setter.Property="Control.BorderThickness" Setter.Value="0" />
+			<Setter Setter.Property="Control.FontSize" Setter.Value="17" />
+			<Setter Setter.Property="FrameworkElement.Cursor" Setter.Value="Hand" />
+			<Setter Setter.Property="FrameworkElement.Width" Setter.Value="30" />
+			<Setter Setter.Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate ControlTemplate.TargetType="{x:Type Button}">
+						<Border Border.Background="{TemplateBinding Control.Background}" Border.Padding="0">
+							<ContentPresenter FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Margin="0" FrameworkElement.VerticalAlignment="Center" />
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style.Triggers>
+				<Trigger Property="UIElement.IsMouseOver" Value="True">
+					<Setter Setter.Property="UIElement.Opacity" Setter.Value="1" />
+					<Setter Setter.Property="Control.FontWeight" Setter.Value="Bold" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style x:Key="borderTitle" TargetType="{x:Type Border}">
+			<Setter Setter.Property="Border.BorderBrush" Setter.Value="#FFDDDDDD" />
+			<Setter Setter.Property="Border.BorderThickness" Setter.Value="0,2,0,2" />
+			<Setter Setter.Property="Border.Background" Setter.Value="#FF222222" />
+			<Setter Setter.Property="FrameworkElement.Margin" Setter.Value="0,0,0,-2" />
+		</Style>
+		<Style x:Key="borderPanel" TargetType="{x:Type Border}">
+			<Setter Setter.Property="Border.BorderBrush" Setter.Value="#FFDDDDDD" />
+			<Setter Setter.Property="Border.Background" Setter.Value="#77222222" />
+		</Style>
+		<Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
+			<Setter Setter.Property="FrameworkElement.Margin" Setter.Value="0,0,0,5" />
+			<Setter Setter.Property="Control.VerticalContentAlignment" Setter.Value="Center" />
+			<Setter Setter.Property="Control.HorizontalContentAlignment" Setter.Value="Center" />
+			<Setter Setter.Property="Control.Background" Setter.Value="#00FFFFFF" />
+			<Setter Setter.Property="Control.Foreground" Setter.Value="#FFFFFFFF" />
+			<Setter Setter.Property="FrameworkElement.Height" Setter.Value="36" />
+			<Setter Setter.Property="Control.BorderThickness" Setter.Value="2" />
+			<Setter Setter.Property="Control.BorderBrush" Setter.Value="#FFDDDDDD" />
+			<Setter Setter.Property="Control.FontSize" Setter.Value="16" />
+		</Style>
+		<Style x:Key="Button" TargetType="{x:Type Button}">
+			<Setter Setter.Property="Control.Background" Setter.Value="#77222222" />
+			<Setter Setter.Property="FrameworkElement.Height" Setter.Value="36" />
+			<Setter Setter.Property="Control.BorderThickness" Setter.Value="2" />
+			<Setter Setter.Property="Control.BorderBrush" Setter.Value="#FFDDDDDD" />
+			<Setter Setter.Property="Control.Foreground" Setter.Value="#FFFFFFFF" />
+			<Setter Setter.Property="Control.Padding" Setter.Value="0" />
+			<Setter Setter.Property="FrameworkElement.Cursor" Setter.Value="Hand" />
+			<Setter Setter.Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate ControlTemplate.TargetType="{x:Type Button}">
+						<Border FrameworkElement.Name="Border" Border.Background="{TemplateBinding Control.Background}" Border.Padding="{TemplateBinding Control.Padding}" Border.BorderBrush="{TemplateBinding Control.BorderBrush}" Border.BorderThickness="{TemplateBinding Control.BorderThickness}">
+							<ContentPresenter FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Margin="0" FrameworkElement.VerticalAlignment="Center" />
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="MouseOver">
+										<Storyboard>
+											<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Timeline.Duration="0:0:0.3" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+												<EasingColorKeyFrame ColorKeyFrame.KeyTime="0" ColorKeyFrame.Value="#77666666" />
+											</ColorAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<ColorAnimationUsingKeyFrames Timeline.Duration="0:0:0.3" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Border">
+												<EasingColorKeyFrame ColorKeyFrame.KeyTime="0" ColorKeyFrame.Value="#77444444" />
+											</ColorAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<DoubleAnimation Timeline.Duration="0:0:0.3" Storyboard.TargetName="Border" Storyboard.TargetProperty="Opacity" DoubleAnimation.From="1" DoubleAnimation.To=".5" />
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style.Triggers>
+				<Trigger Trigger.Property="UIElement.IsMouseOver" Trigger.Value="True">
+					<Setter Setter.Property="Control.Background" Setter.Value="#77666666" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style x:Key="scrollBarThumb" TargetType="{x:Type Thumb}">
+			<Setter Setter.Property="UIElement.SnapsToDevicePixels" Setter.Value="True" />
+			<Setter Setter.Property="FrameworkElement.OverridesDefaultStyle" Setter.Value="True" />
+			<Setter Setter.Property="Control.IsTabStop" Setter.Value="False" />
+			<Setter Setter.Property="UIElement.Focusable" Setter.Value="False" />
+			<Setter Setter.Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate ControlTemplate.TargetType="{x:Type Thumb}">
+						<Border Border.CornerRadius="2" Border.Background="#FFFFFFFF" Border.BorderBrush="#FF000000" Border.BorderThickness="1" />
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+			<Setter Setter.Property="UIElement.SnapsToDevicePixels" Setter.Value="True" />
+			<Setter Setter.Property="FrameworkElement.OverridesDefaultStyle" Setter.Value="True" />
+			<Setter Setter.Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate ControlTemplate.TargetType="{x:Type ScrollBar}">
+						<Grid>
+							<Border Border.CornerRadius="2" FrameworkElement.Style="{StaticResource borderPanel}" Border.BorderThickness="1 0 1 0" FrameworkElement.Width="10" />
+							<Track Track.Name="PART_Track" Track.IsDirectionReversed="True">
+								<Track.Thumb>
+									<Thumb FrameworkElement.Style="{StaticResource scrollBarThumb}" FrameworkElement.Margin="1,0,1,0" />
+								</Track.Thumb>
+							</Track>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="{x:Type ScrollViewer}" TargetType="{x:Type ScrollViewer}">
+			<Setter Setter.Property="FrameworkElement.OverridesDefaultStyle" Setter.Value="True" />
+			<Setter Setter.Property="Control.Foreground" Setter.Value="#FFFFFFFF" />
+			<Setter Setter.Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate ControlTemplate.TargetType="{x:Type ScrollViewer}">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition ColumnDefinition.Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition RowDefinition.Height="Auto" />
+							</Grid.RowDefinitions>
+							<Border Grid.Column="1" Border.BorderThickness="0,1,1,1" Border.Padding="5">
+								<ScrollContentPresenter />
+							</Border>
+							<ScrollBar ScrollBar.Name="PART_VerticalScrollBar" RangeBase.Value="{TemplateBinding ScrollViewer.VerticalOffset}" RangeBase.Maximum="{TemplateBinding ScrollViewer.ScrollableHeight}" ScrollBar.ViewportSize="{TemplateBinding ScrollViewer.ViewportHeight}" UIElement.Visibility="{TemplateBinding ScrollViewer.ComputedVerticalScrollBarVisibility}" />
+							<ScrollBar ScrollBar.Name="PART_HorizontalScrollBar" ScrollBar.Orientation="Horizontal" Grid.Row="1" Grid.Column="1" RangeBase.Value="{TemplateBinding ScrollViewer.HorizontalOffset}" RangeBase.Maximum="{TemplateBinding ScrollViewer.ScrollableWidth}" ScrollBar.ViewportSize="{TemplateBinding ScrollViewer.ViewportWidth}" UIElement.Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style Style.TargetType="{x:Type ComboBox}">
+			<Setter Setter.Property="Control.Foreground" Setter.Value="#FFFFFFFF" />
+			<Setter Setter.Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate ControlTemplate.TargetType="{x:Type ComboBox}">
+						<Grid>
+							<ToggleButton Grid.Column="2" UIElement.Focusable="False" ToggleButton.IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}">
+								<Control.Template>
+									<ControlTemplate>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition ColumnDefinition.Width="5*" />
+												<ColumnDefinition ColumnDefinition.Width="*" />
+											</Grid.ColumnDefinitions>
+											<Border Border.Name="Border" Grid.ColumnSpan="2" Border.CornerRadius="5" Border.Background="#77222222" Border.BorderBrush="#FF000000" Border.BorderThickness="1" />
+											<Border Grid.Column="0" Border.CornerRadius="5,0,0,5" FrameworkElement.Margin="1" Border.Background="#77222222" Border.BorderBrush="#FF000000" Border.BorderThickness="0,0,1,0" />
+											<Path Path.Name="Arrow" Grid.Column="1" Shape.Fill="#FFFFFFFF" FrameworkElement.HorizontalAlignment="Center" FrameworkElement.VerticalAlignment="Center" Path.Data="M0,0L4,4 8,0z" />
+										</Grid>
+										<ControlTemplate.Triggers>
+											<Trigger Trigger.Property="UIElement.IsMouseOver" Trigger.Value="True">
+												<Setter Setter.TargetName="Border" Setter.Property="Border.Background" Setter.Value="#77666666" />
+											</Trigger>
+											<Trigger Trigger.Property="ToggleButton.IsChecked" Trigger.Value="true">
+												<Setter Setter.TargetName="Border" Setter.Property="Border.Background" Setter.Value="#77666666" />
+											</Trigger>
+										</ControlTemplate.Triggers>
+									</ControlTemplate>
+								</Control.Template>
+							</ToggleButton>
+							<ContentPresenter FrameworkElement.Name="ContentSite" UIElement.IsHitTestVisible="False" ContentPresenter.Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentPresenter.ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}" ContentPresenter.ContentTemplateSelector="{TemplateBinding ItemsControl.ItemTemplateSelector}" FrameworkElement.Margin="3" FrameworkElement.VerticalAlignment="Center" FrameworkElement.HorizontalAlignment="Center" />
+							<TextBox TextBox.Name="PART_EditableTextBox" UIElement.Visibility="Hidden" TextBoxBase.IsReadOnly="{TemplateBinding ComboBox.IsReadOnly}" />
+							<Popup FrameworkElement.Name="Popup" Popup.Placement="Bottom" Popup.IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}" Popup.AllowsTransparency="True" UIElement.Focusable="False" Popup.PopupAnimation="Slide">
+								<Grid FrameworkElement.Name="DropDown" UIElement.SnapsToDevicePixels="True" FrameworkElement.MinWidth="{TemplateBinding FrameworkElement.ActualWidth}" FrameworkElement.MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+									<Border Border.Name="DropDownBorder" Border.Background="#FF222222" />
+									<ScrollViewer UIElement.SnapsToDevicePixels="True">
+										<StackPanel Panel.IsItemsHost="True" />
+									</ScrollViewer>
+								</Grid>
+							</Popup>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style.Triggers />
+		</Style>
+		<Style Style.TargetType="{x:Type TabControl}">
+			<Setter Setter.Property="FrameworkElement.Margin" Setter.Value="0" />
+			<Setter Setter.Property="Control.Background" Setter.Value="#00FFFFFF" />
+			<Setter Setter.Property="Control.BorderThickness" Setter.Value="0" />
+		</Style>
+		<Style TargetType="{x:Type TabItem}">
+			<Setter Setter.Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate ControlTemplate.TargetType="{x:Type TabItem}">
+						<Grid />
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="TabItemButton" Style.TargetType="{x:Type ListBoxItem}">
+			<Setter Setter.Property="Control.Foreground" Setter.Value="#FFFFFFFF" />
+			<Setter Setter.Property="Control.Background" Setter.Value="#FF222222" />
+			<Setter Setter.Property="Control.BorderThickness" Setter.Value="0" />
+			<Setter Setter.Property="Control.HorizontalContentAlignment" Setter.Value="Center" />
+			<Setter Setter.Property="FrameworkElement.Margin" Setter.Value="0,-1,0,0" />
+			<Setter Setter.Property="FrameworkElement.Height" Setter.Value="26" />
+		</Style>
+		<Style x:Key="ButtonDanger" TargetType="{x:Type Button}" BasedOn="{StaticResource Button}">
+			<Setter Setter.Property="Control.Background" Setter.Value="#50ED4141" />
+			<Setter Setter.Property="Control.Foreground" Setter.Value="#78FFFFFF" />
+		</Style>
+
+	</Application.Resources>
+</Application>

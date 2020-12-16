@@ -1,0 +1,131 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:local="clr-namespace:GTAV_Helper"
+ x:Class="GTAV_Helper.MainWindow"
+     Title="GTA:V Helper"
+     Background="#FF000000"
+     Height="538"
+     Width="1010"
+     WindowStartupLocation="CenterScreen"
+     WindowStyle="None"
+     AllowsTransparency="True"
+     ResizeMode="CanMinimize">
+	<Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Border Style="{StaticResource borderTitle}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto"/>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="auto"/>
+					<ColumnDefinition Width="auto"/>
+				</Grid.ColumnDefinitions>
+				<Label Content="GTA:V Helper"
+                         VerticalAlignment="Center"
+                         Margin="10,0,0,0"
+                         Padding="0"
+                         FontSize="16"/>
+				<Grid Name="ControlButtons"
+                         Column="1"
+                         HorizontalAlignment="Center">
+					<ListBox Name="ControlItems"
+                                 Background="#00FFFFFF"
+                                 BorderThickness="0"
+                                 Width="113">
+						<ListBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+							</ItemsPanelTemplate>
+						</ListBox.ItemsPanel>
+						<ListBoxItem Style="{StaticResource TabItemButton}"
+                                         Content="Управление"
+                                         Width="100"
+                                         IsSelected="True"
+                                         Tag="{Binding ElementName=ControlTab}"
+                                         Selected="TabItem_Selected"/>
+					</ListBox>
+				</Grid>
+				<Button Style="{StaticResource btnTitle}"
+                         Grid.Column="2"
+                         Content="_"
+                         Margin="0,-2,0,0"
+                         Click="Minimize_Click"/>
+				<Button Style="{StaticResource btnTitle}"
+                         Grid.Column="3"
+                         Content="⨯"
+                         Margin="0,0,3,0"
+                         Click="Close_Click"/>
+			</Grid>
+		</Border>
+		<TabControl Name="Tabs"
+                 Grid.Row="2"
+                 SelectedIndex="0">
+			<TabItem Name="ControlTab" Header="Control">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+					<ScrollViewer Name="Log"/>
+					<Grid Row="1">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="40"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid Row="1">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto"/>
+								<ColumnDefinition/>
+								<ColumnDefinition Width="auto"/>
+							</Grid.ColumnDefinitions>
+							<Button Style="{StaticResource Button}"
+                                             IsEnabled="False"
+                                             Padding="5 0 5 0"
+                                             Content="Отправить команду на сервер:"/>
+							<TextBox Name="ServerCommand"
+                                             Margin="0"
+                                             Grid.Column="1"/>
+							<Button Name="SendCommand"
+                                             Style="{StaticResource Button}"
+                                             Grid.Column="2"
+                                             Padding="5 0 5 0"
+                                             IsEnabled="False"
+                                             Click="SendCommand_Click"
+                                             Content="Отправить"/>
+						</Grid>
+						<Border Grid.Row="2">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+									<ColumnDefinition/>
+								</Grid.ColumnDefinitions>
+								<Button Name="ToggleServer"
+                                                 Style="{StaticResource Button}"
+                                                 Click="ToggleServer_Click"
+                                                 Content="Start server"/>
+								<Button Name="RestartServer"
+                                                 Grid.Column="1"
+                                                 IsEnabled="False"
+                                                 Style="{StaticResource ButtonDanger}"
+                                                 Click="RestartServer_Click"
+                                                 Content="Restart server"/>
+								<Button Grid.Column="2"
+                                                 Style="{StaticResource Button}"
+                                                 Click="SettingConf_Clicked"
+                                                 Content="Редактирование conf.json"/>
+							</Grid>
+						</Border>
+					</Grid>
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
